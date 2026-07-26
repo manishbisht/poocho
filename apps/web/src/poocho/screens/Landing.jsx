@@ -53,7 +53,7 @@ export default function Landing({ dark, onToggleTheme, onStart }) {
               The video that answers back.
             </h1>
             <p style={{ marginTop: 22, maxWidth: '48ch', fontSize: 'var(--text-lg)', lineHeight: 1.6, color: 'var(--text-muted)' }}>
-              Ask any English lecture a question in your own language. Poocho answers in yours.
+              Ask a lecture in any language a question in your own language. Poocho answers in yours.
             </p>
           </div>
           <div style={{ position: 'relative', marginTop: 'clamp(32px,5vw,56px)', maxWidth: 820 }}>

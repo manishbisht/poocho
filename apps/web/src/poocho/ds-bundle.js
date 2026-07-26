@@ -892,7 +892,7 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function DropZone({
   label = 'Drop an MP4 video here, or click to browse',
-  hint = 'MP4 only · up to 2 GB',
+  hint = 'MP4 only · up to 100 MB',
   onFiles,
   onLink,
   style,

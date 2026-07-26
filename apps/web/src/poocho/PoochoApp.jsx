@@ -117,7 +117,13 @@ export default function PoochoApp() {
         onToggleTheme={toggleTheme}
         onStart={(files) => {
           if (files && files.length > 0) {
-            setSelectedFile(files[0]);
+            const file = files[0];
+            const maxBytes = 100 * 1024 * 1024; // 100 MB
+            if (file.size > maxBytes) {
+              alert('Video file size exceeds the 100 MB limit.');
+              return;
+            }
+            setSelectedFile(file);
           } else {
             setSelectedFile(null);
           }
