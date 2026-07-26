@@ -77,3 +77,16 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: 'apps/worker'
+          # Upload the Worker's runtime secrets from GitHub environment secrets
+          # (values read from the env block below), mirroring the local
+          # `wrangler deploy --secrets-file .dev.vars` flow.
+          secrets: |
+            SARVAM_API_KEY
+            R2_ACCESS_KEY_ID
+            R2_SECRET_ACCESS_KEY
+            R2_ACCOUNT_ID
+        env:
+          SARVAM_API_KEY: ${{ secrets.SARVAM_API_KEY }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
