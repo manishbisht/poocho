@@ -43,6 +43,7 @@ type VoiceStore = {
 	resumeVideo: () => void;
 	seekVideo: (seconds: number) => void;
 	setPosition: (seconds: number) => void;
+	setIsPlaying: (isPlaying: boolean) => void;
 	setPlayer: (player: PlayerControl | null) => void;
 	muteVideo: () => void;
 	unmuteVideo: () => void;
@@ -58,7 +59,7 @@ export const useVoiceStore = create<VoiceStore>((set, get) => ({
 	chatTurns: [],
 	videoShouldFlash: null,
 	position: 0,
-	isPlaying: true,
+	isPlaying: false,
 	player: null,
 	setVideoId: (videoId) => set({ videoId }),
 	clearVideoSession: () => set({
@@ -69,7 +70,7 @@ export const useVoiceStore = create<VoiceStore>((set, get) => ({
 		chatTurns: [],
 		videoShouldFlash: null,
 		position: 0,
-		isPlaying: true,
+		isPlaying: false,
 		player: null,
 	}),
 	appendUserTurn: (text, language, interrupted = false) => set((state) => ({
@@ -97,6 +98,7 @@ export const useVoiceStore = create<VoiceStore>((set, get) => ({
 		set({ position: seconds });
 	},
 	setPosition: (position) => set({ position }),
+	setIsPlaying: (isPlaying) => set({ isPlaying }),
 	setPlayer: (player) => set({ player }),
 	muteVideo: () => {
 		get().player?.mute?.();

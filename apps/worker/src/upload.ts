@@ -6,7 +6,6 @@ import {
 	fetchWithTimeout,
 	getErrorMessage,
 	json,
-	presignGet,
 	readJsonFromR2,
 	sleep,
 	writeJsonToR2,
@@ -125,17 +124,52 @@ export async function getVideoStatus(
 }
 
 export async function streamVideo(
+	request: Request,
 	videoId: string,
 	env: Env,
 ): Promise<Response> {
-	const url = await presignGet(env, originalVideoKey(videoId), 3600);
+	// Pass the request headers straight through so R2 parses the `Range` header
+	// itself and populates `object.range`; passing the raw header string throws.
+	const object = await env.STORAGE.get(originalVideoKey(videoId), {
+		range: request.headers,
+	});
 
-	return new Response(null, {
-		status: 302,
-		headers: {
-			...corsHeaders(),
-			location: url,
-		},
+	if (!object) {
+		return new Response("Video not found", {
+			status: 404,
+			headers: corsHeaders(request),
+		});
+	}
+
+	const headers = new Headers();
+	object.writeHttpMetadata(headers);
+	headers.set("accept-ranges", "bytes");
+
+	const cors = corsHeaders(request);
+	for (const [key, value] of Object.entries(cors)) {
+		headers.set(key, value);
+	}
+
+	const status = object.range ? 206 : 200;
+
+	if (object.range) {
+		const size = object.size;
+		// R2 normalizes a parsed Range header to the offset/length form, but the
+		// R2Range type is a union (it also allows `{ suffix }`), so fall back
+		// defensively to keep the header math correct for every shape.
+		const offset = "offset" in object.range ? object.range.offset ?? 0 : 0;
+		const length =
+			"length" in object.range ? object.range.length ?? size - offset : size - offset;
+		const end = offset + length - 1;
+		headers.set("content-range", `bytes ${offset}-${end}/${size}`);
+		headers.set("content-length", String(length));
+	} else {
+		headers.set("content-length", String(object.size));
+	}
+
+	return new Response(object.body, {
+		status,
+		headers,
 	});
 }
 

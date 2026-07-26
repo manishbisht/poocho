@@ -2,7 +2,7 @@ import { BulbulClient } from "./sarvam/bulbul";
 import { SarvamChatClient } from "./sarvam/chat";
 import { SaarasClient, mapSarvamLanguage } from "./sarvam/saaras";
 import { buildSystemPrompt } from "./prompts";
-import type { Env, Session, ServerMessage, TranscriptSegment, TutorTurnPayload, Turn } from "./types";
+import type { Env, Session, ServerMessage, TutorLanguage, TutorTurnPayload, Turn } from "./types";
 import {
 	AppError,
 	getErrorMessage,

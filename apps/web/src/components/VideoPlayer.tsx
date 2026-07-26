@@ -52,10 +52,17 @@ export function VideoPlayer({ videoId, onPlayerReady }: VideoPlayerProps) {
 		};
 		const handleTimeUpdate = () => reportPosition();
 		const handleSeeked = () => reportPosition(true);
+		// Keep the store's isPlaying in sync with the element's real state so the
+		// play/pause button always reflects reality (autoplay may be blocked).
+		const handlePlay = () => useVoiceStore.getState().setIsPlaying(true);
+		const handlePause = () => useVoiceStore.getState().setIsPlaying(false);
 		const handleLoadedMetadata = () => {
 			if (video.duration && !isNaN(video.duration)) {
 				useVoiceStore.getState().setDuration(video.duration);
 			}
+			// Attempt to start playback once the media is ready. Browsers may
+			// reject autoplay with sound; the pause state above stays honest.
+			void video.play().catch(() => undefined);
 		};
 		const handleError = () => {
 			if (import.meta.env.DEV) {
@@ -67,12 +74,16 @@ export function VideoPlayer({ videoId, onPlayerReady }: VideoPlayerProps) {
 		onPlayerReady?.(controls);
 		video.addEventListener("timeupdate", handleTimeUpdate);
 		video.addEventListener("seeked", handleSeeked);
+		video.addEventListener("play", handlePlay);
+		video.addEventListener("pause", handlePause);
 		video.addEventListener("loadedmetadata", handleLoadedMetadata);
 		video.addEventListener("error", handleError);
 
 		return () => {
 			video.removeEventListener("timeupdate", handleTimeUpdate);
 			video.removeEventListener("seeked", handleSeeked);
+			video.removeEventListener("play", handlePlay);
+			video.removeEventListener("pause", handlePause);
 			video.removeEventListener("loadedmetadata", handleLoadedMetadata);
 			video.removeEventListener("error", handleError);
 			setPlayer(null);

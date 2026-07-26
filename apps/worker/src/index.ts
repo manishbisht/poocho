@@ -46,7 +46,7 @@ async function routeRequest(
 
 	if (request.method === "GET" && url.pathname.startsWith("/stream/")) {
 		const videoId = url.pathname.slice("/stream/".length);
-		return streamVideo(videoId, env);
+		return streamVideo(request, videoId, env);
 	}
 
 	if (request.method === "GET" && url.pathname.startsWith("/session/")) {
