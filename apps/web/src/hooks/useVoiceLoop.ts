@@ -22,7 +22,7 @@ type VoiceLoop = {
 	clearError: () => void;
 };
 
-const DEFAULT_WS_URL = import.meta.env.VITE_WS_URL ?? "wss://poocho.manishbisht.workers.dev";
+const DEFAULT_WS_URL = import.meta.env.VITE_WS_URL || "wss://poocho.manishbisht.workers.dev";
 
 export function useVoiceLoop(videoId: string): VoiceLoop {
 	const [connectionState, setConnectionState] = useState<ConnectionState>("idle");

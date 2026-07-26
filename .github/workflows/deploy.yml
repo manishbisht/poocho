@@ -36,6 +36,12 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: apps/web
+        env:
+          # Vite inlines VITE_* vars at build time, so environment secrets must
+          # be present here. Unset secrets expand to "" and fall back to the
+          # in-code defaults.
+          VITE_WS_URL: ${{ secrets.VITE_WS_URL }}
+          VITE_CLARITY_PROJECT_ID: ${{ secrets.VITE_CLARITY_PROJECT_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
