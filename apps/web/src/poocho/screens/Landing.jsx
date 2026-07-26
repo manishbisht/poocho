@@ -3,9 +3,42 @@ import TopBar from '../TopBar.jsx';
 import { Watermark, DropZone, Card, Icon } from '../ds.js';
 
 const WHY = [
-  { icon: 'languages', title: 'The lecture is in English', body: 'Almost every good engineering and NEET lecture online is. That is not going to change soon.' },
-  { icon: 'message-circle-question-mark', title: 'The student thinks in Hindi', body: 'Or Kannada, or Hinglish. Understanding and asking are two different skills, in two different languages.' },
-  { icon: 'sparkles', title: 'The moment of confusion is short', body: 'It lasts about eight seconds before a student scrubs back, gives up, or opens another tab. Poocho fits inside it.' },
+  {
+    icon: 'languages',
+    title: 'The lecture is in English',
+    rubric: 'Impact · 1.5×',
+    body: "Almost every good engineering and NEET lecture online is. That's not going to change soon — 300M+ Indian students learn from content they only half-understand."
+  },
+  {
+    icon: 'mic',
+    title: 'The student thinks in Hindi',
+    rubric: 'Voice Experience · 2.5×',
+    body: 'Or Kannada, or Hinglish. Poocho hears them all — including code-switched sentences and regional accents. Understanding and asking are two different skills, in two different languages.'
+  },
+  {
+    icon: 'sparkles',
+    title: 'The moment of confusion is short',
+    rubric: 'Delight · 1×',
+    body: 'About eight seconds, before a student scrubs back, gives up, or opens another tab. Poocho fits inside that window with a spoken answer — no typing, no reading.'
+  },
+  {
+    icon: 'check',
+    title: 'Answers grounded in the video',
+    rubric: 'JTBD Completion · 2.5×',
+    body: "Poocho only answers from what's actually in the lecture — with a timestamp. Ask about something the video doesn't cover, and Poocho will say so. No hallucinations, no wrong direction."
+  },
+  {
+    icon: 'skip-forward',
+    title: 'The video jumps to the answer',
+    rubric: 'Creativity · 1.5×',
+    body: 'Dubbing translates a monologue. Poocho makes it a dialogue — pause, ask in your language, and the video seeks to the exact moment your answer lives. A learning tool that watches the video with you.'
+  },
+  {
+    icon: 'message-circle-question-mark',
+    title: "Bharat doesn't end at the border",
+    rubric: 'Memory & Context · 1×',
+    body: "An Indian PhD student in Berlin studying quantum physics in German. A software engineer in Toronto watching French tutorials. Poocho works wherever an Indian is learning in a language that isn't theirs — and remembers every question they've asked along the way."
+  }
 ];
 
 export default function Landing({ dark, onToggleTheme, onStart }) {
@@ -29,13 +62,18 @@ export default function Landing({ dark, onToggleTheme, onStart }) {
         </section>
 
         <section style={{ marginTop: 'var(--section-y)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 20 }}>
             {WHY.map((w) => (
-              <Card key={w.title} padding={28} interactive style={{ display: 'grid', gap: 14, alignContent: 'start' }}>
-                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--accent-soft)', border: '1px solid var(--accent-soft-line)', color: 'var(--accent-text)' }}>
-                  <Icon name={w.icon} size={19} />
-                </span>
-                <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-medium)', letterSpacing: 'var(--ls-tight)' }}>{w.title}</h3>
+              <Card key={w.title} padding={28} interactive style={{ display: 'grid', gap: 14, alignContent: 'start', position: 'relative' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--accent-soft)', border: '1px solid var(--accent-soft-line)', color: 'var(--accent-text)' }}>
+                    <Icon name={w.icon} size={19} />
+                  </span>
+                  <span style={{ fontSize: 'var(--text-xxs, 10px)', fontWeight: 'var(--weight-bold, 600)', letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-faint)', background: 'var(--bg-muted, rgba(0,0,0,0.04))', padding: '4px 8px', borderRadius: 'var(--radius-sm, 4px)' }}>
+                    {w.rubric}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-medium)', letterSpacing: 'var(--ls-tight)', color: 'var(--text-strong)' }}>{w.title}</h3>
                 <p style={{ fontSize: 'var(--text-sm)', lineHeight: 1.65, color: 'var(--text-muted)' }}>{w.body}</p>
               </Card>
             ))}
