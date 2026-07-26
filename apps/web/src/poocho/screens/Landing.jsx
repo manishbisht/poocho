@@ -65,12 +65,9 @@ export default function Landing({ dark, onToggleTheme, onStart }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 20 }}>
             {WHY.map((w) => (
               <Card key={w.title} padding={28} interactive style={{ display: 'grid', gap: 14, alignContent: 'start', position: 'relative' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--accent-soft)', border: '1px solid var(--accent-soft-line)', color: 'var(--accent-text)' }}>
                     <Icon name={w.icon} size={19} />
-                  </span>
-                  <span style={{ fontSize: 'var(--text-xxs, 10px)', fontWeight: 'var(--weight-bold, 600)', letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-faint)', background: 'var(--bg-muted, rgba(0,0,0,0.04))', padding: '4px 8px', borderRadius: 'var(--radius-sm, 4px)' }}>
-                    {w.rubric}
                   </span>
                 </div>
                 <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-medium)', letterSpacing: 'var(--ls-tight)', color: 'var(--text-strong)' }}>{w.title}</h3>
