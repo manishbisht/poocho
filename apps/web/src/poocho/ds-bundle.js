@@ -891,15 +891,14 @@ Object.assign(__ds_scope, { VideoTimeline });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function DropZone({
-  label = 'Drop a video, or paste a YouTube link',
-  hint = 'MP4, MOV or WebM · up to 2 GB',
+  label = 'Drop an MP4 video here, or click to browse',
+  hint = 'MP4 only · up to 2 GB',
   onFiles,
   onLink,
   style,
   ...rest
 }) {
   const [over, setOver] = React.useState(false);
-  const [link, setLink] = React.useState('');
   const inputRef = React.useRef(null);
   return /*#__PURE__*/React.createElement("div", _extends({
     onDragOver: e => {
@@ -910,7 +909,12 @@ function DropZone({
     onDrop: e => {
       e.preventDefault();
       setOver(false);
-      onFiles && onFiles(Array.from(e.dataTransfer.files));
+      const files = Array.from(e.dataTransfer.files).filter(f => f.type === 'video/mp4' || f.name.endsWith('.mp4'));
+      if (files.length > 0) {
+        onFiles && onFiles(files);
+      } else {
+        alert('Please drop an MP4 video file.');
+      }
     },
     onClick: () => inputRef.current && inputRef.current.click(),
     style: {
@@ -933,9 +937,16 @@ function DropZone({
   }, rest), /*#__PURE__*/React.createElement("input", {
     ref: inputRef,
     type: "file",
-    accept: "video/*",
+    accept: "video/mp4",
     hidden: true,
-    onChange: e => onFiles && onFiles(Array.from(e.target.files))
+    onChange: e => {
+      const files = Array.from(e.target.files).filter(f => f.type === 'video/mp4' || f.name.endsWith('.mp4'));
+      if (files.length > 0) {
+        onFiles && onFiles(files);
+      } else {
+        alert('Please select an MP4 video file.');
+      }
+    }
   }), /*#__PURE__*/React.createElement("span", {
     style: {
       display: 'flex',
@@ -970,63 +981,7 @@ function DropZone({
       fontSize: 'var(--text-sm)',
       color: 'var(--text-faint)'
     }
-  }, hint)), /*#__PURE__*/React.createElement("div", {
-    onClick: e => e.stopPropagation(),
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 8,
-      width: '100%',
-      maxWidth: 420,
-      height: 46,
-      padding: '0 6px 0 14px',
-      borderRadius: 'var(--radius-pill)',
-      background: 'var(--surface-inset)',
-      border: '1px solid var(--line-soft)'
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "link",
-    size: 16,
-    style: {
-      color: 'var(--text-faint)'
-    }
-  }), /*#__PURE__*/React.createElement("input", {
-    value: link,
-    onChange: e => setLink(e.target.value),
-    onKeyDown: e => {
-      if (e.key === 'Enter' && onLink) onLink(link);
-    },
-    placeholder: "youtube.com/watch?v=\u2026",
-    style: {
-      flex: 1,
-      minWidth: 0,
-      border: 'none',
-      outline: 'none',
-      background: 'transparent',
-      fontFamily: 'var(--font-sans)',
-      fontSize: 'var(--text-sm)',
-      color: 'var(--text-body)'
-    }
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    onClick: () => onLink && onLink(link),
-    "aria-label": "Load link",
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 34,
-      height: 34,
-      borderRadius: '50%',
-      border: 'none',
-      background: 'var(--primary)',
-      color: 'var(--text-on-primary)',
-      cursor: 'pointer'
-    }
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "arrow-right",
-    size: 16
-  }))));
+  }, hint)));
 }
 Object.assign(__ds_scope, { DropZone });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/upload/DropZone.jsx", error: String((e && e.message) || e) }); }
