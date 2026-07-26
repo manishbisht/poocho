@@ -1,0 +1,27 @@
+name = "poocho"
+main = "src/index.ts"
+compatibility_date = "2026-07-26"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[[durable_objects.bindings]]
+name = "SESSION"
+class_name = "PoochoSession"
+
+[[durable_objects.bindings]]
+name = "TRANSCRIPTION_JOB"
+class_name = "TranscriptionJob"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PoochoSession"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["TranscriptionJob"]
+
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "poocho"

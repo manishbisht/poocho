@@ -1,0 +1,4 @@
+/* Poocho webfonts — served from Google Fonts.
+   NOTE: no font binaries were available in the source repo (it is empty),
+   so these are Google Fonts substitutions. See readme.md > Typography. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap");

@@ -1,0 +1,116 @@
+:root{
+  /* ── Teal (primary) — warm, desaturated, ink-like at the dark end ── */
+  --teal-50:#EFF7F5; --teal-100:#D9EDE8; --teal-200:#B3DBD2; --teal-300:#7FC2B4;
+  --teal-400:#4CA396; --teal-500:#2A8478; --teal-600:#1C6B60; --teal-700:#15544C;
+  --teal-800:#0F3F39; --teal-900:#0A2C28;
+
+  /* ── Saffron (accent) — muted, never fluorescent ── */
+  --saffron-50:#FEF6EC; --saffron-100:#FBE8CE; --saffron-200:#F6CE96; --saffron-300:#EFB363;
+  --saffron-400:#E29A3C; --saffron-500:#C97F22; --saffron-600:#A5651A; --saffron-700:#7D4C12;
+
+  /* ── Warm neutrals — paper, not grey ── */
+  --sand-0:#FFFFFF; --sand-50:#FBF8F3; --sand-100:#F5F0E7; --sand-200:#EBE4D8;
+  --sand-300:#DCD3C4; --sand-400:#B8AE9C; --sand-500:#8C8375; --sand-600:#6B635A;
+  --sand-700:#4A443C; --sand-800:#2C2823; --sand-900:#1A1714; --sand-950:#100E0C;
+
+  /* ── Status hues ── */
+  --clay-500:#C0432F; --clay-100:#F8E3DE;
+  --moss-500:#4F7A3A; --moss-100:#E7F0DF;
+
+  /* ── Semantic aliases (light is the default theme) ── */
+  --bg-page:var(--sand-50);
+  --bg-sunken:var(--sand-100);
+  --surface-card:var(--sand-0);
+  --surface-raised:var(--sand-0);
+  --surface-inset:var(--sand-100);
+  --surface-inverse:var(--sand-900);
+
+  --text-strong:var(--sand-900);
+  --text-body:var(--sand-800);
+  --text-muted:var(--sand-600);
+  --text-faint:var(--sand-500);
+  --text-inverse:var(--sand-50);
+  --text-on-primary:#FFFFFF;
+
+  --line-soft:var(--sand-200);
+  --line:var(--sand-300);
+  --line-strong:var(--sand-400);
+
+  --primary:var(--teal-600);
+  --primary-hover:var(--teal-700);
+  --primary-press:var(--teal-800);
+  --primary-soft:var(--teal-50);
+  --primary-soft-line:var(--teal-200);
+  --primary-text:var(--teal-700);
+
+  --accent:var(--saffron-500);
+  --accent-soft:var(--saffron-50);
+  --accent-soft-line:var(--saffron-200);
+  --accent-text:var(--saffron-600);
+
+  /* Product-semantic: the two voice states */
+  --state-listening:var(--saffron-400);
+  --state-listening-glow:rgba(226,154,60,.38);
+  --state-speaking:var(--teal-400);
+  --state-speaking-glow:rgba(42,132,120,.32);
+
+  /* Timeline */
+  --timeline-track:var(--sand-300);
+  --timeline-played:var(--teal-600);
+  --timeline-marker:var(--saffron-400);
+  --timeline-flash:#FFE7BC;
+
+  --danger:var(--clay-500); --danger-soft:var(--clay-100);
+  --success:var(--moss-500); --success-soft:var(--moss-100);
+
+  --focus-ring:var(--teal-400);
+  --scrim:rgba(26,23,20,.55);
+}
+
+[data-theme="dark"]{
+  --bg-page:#14120F;
+  --bg-sunken:#0E0D0B;
+  --surface-card:#1D1A16;
+  --surface-raised:#232019;
+  --surface-inset:#181511;
+  --surface-inverse:var(--sand-50);
+
+  --text-strong:#F5F0E7;
+  --text-body:#E5DED2;
+  --text-muted:#A79E92;
+  --text-faint:#7E7568;
+  --text-inverse:var(--sand-900);
+  --text-on-primary:#062723;
+
+  --line-soft:#2A251F;
+  --line:#3A342B;
+  --line-strong:#4E463B;
+
+  --primary:var(--teal-300);
+  --primary-hover:var(--teal-200);
+  --primary-press:var(--teal-400);
+  --primary-soft:rgba(127,194,180,.10);
+  --primary-soft-line:rgba(127,194,180,.26);
+  --primary-text:var(--teal-300);
+
+  --accent:var(--saffron-300);
+  --accent-soft:rgba(239,179,99,.10);
+  --accent-soft-line:rgba(239,179,99,.26);
+  --accent-text:var(--saffron-300);
+
+  --state-listening:var(--saffron-300);
+  --state-listening-glow:rgba(239,179,99,.34);
+  --state-speaking:var(--teal-300);
+  --state-speaking-glow:rgba(127,194,180,.28);
+
+  --timeline-track:#3A342B;
+  --timeline-played:var(--teal-300);
+  --timeline-marker:var(--saffron-300);
+  --timeline-flash:#5A4522;
+
+  --danger:#E4705C; --danger-soft:rgba(228,112,92,.14);
+  --success:#8FBE72; --success-soft:rgba(143,190,114,.14);
+
+  --focus-ring:var(--teal-300);
+  --scrim:rgba(8,7,6,.66);
+}

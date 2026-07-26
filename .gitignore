@@ -1,0 +1,8 @@
+node_modules/
+.vite/
+.idea/
+.wrangler/
+dist/
+build/
+.dev.vars
+*.log

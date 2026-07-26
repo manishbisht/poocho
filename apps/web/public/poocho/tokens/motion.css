@@ -1,0 +1,21 @@
+:root{
+  --dur-instant:90ms; /* @kind other */
+  --dur-fast:160ms; /* @kind other */
+  --dur-base:240ms; /* @kind other */
+  --dur-slow:420ms; /* @kind other */
+  --dur-state:700ms; /* @kind other */     /* landing → processing → watch cross-fades */
+  --dur-breath:3200ms; /* @kind other */   /* speaking state */
+  --dur-pulse:1400ms; /* @kind other */    /* listening state */
+
+  --ease-out:cubic-bezier(.22,.61,.36,1); /* @kind other */
+  --ease-in-out:cubic-bezier(.65,0,.35,1); /* @kind other */
+  --ease-tactile:cubic-bezier(.2,.9,.3,1.4); /* @kind other */  /* mic press release */
+  --ease-calm:cubic-bezier(.4,0,.2,1); /* @kind other */
+}
+@keyframes poocho-pulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(1.9);opacity:0}100%{transform:scale(1.9);opacity:0}}
+@keyframes poocho-breathe{0%,100%{transform:scale(1);opacity:.34}50%{transform:scale(1.22);opacity:.62}}
+@keyframes poocho-spin{to{transform:rotate(360deg)}}
+@keyframes poocho-flash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+@keyframes poocho-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes poocho-chip{0%,100%{transform:none}30%{transform:translateX(3px) scale(1.06)}60%{transform:translateX(0) scale(1.02)}}
+@keyframes poocho-caret{0%,100%{opacity:1}50%{opacity:0}}

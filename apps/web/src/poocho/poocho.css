@@ -1,0 +1,19 @@
+/* Shell layout lifted from the ui_kits/poocho-app/index.html <style> block. */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  overflow: hidden;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+.state {
+  animation: poocho-rise var(--dur-state) var(--ease-calm) 1;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
