@@ -50,6 +50,8 @@ jobs:
         uses: actions/deploy-pages@v4
 
   deploy-backend:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
